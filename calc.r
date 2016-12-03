@@ -1,11 +1,11 @@
 args = commandArgs(trailingOnly=TRUE)
 
-projectDir = "~/documents/lu/project/"
-setwd(projectDir)
+#projectDir = "~/documents/lu/project/"
+#setwd(projectDir)
 
 plotFormat = "pdf" # output format for plots (either jpg or pdf)
 
-flowFile= "r10.csv"
+flowFile= "r100.csv"
 flowMatrix = read.csv(flowFile)
 
 
@@ -62,7 +62,7 @@ genPlot = function(){
   outMatrix = genTable()
   if (plotFormat == "pdf") {
     pdf("plots.pdf")
-    plot(outMatrix[,1], outMatrix[,3], type="l", col="blue", xlab="Time (s)", ylab = expression(Flow ~ m^{3} / s ~ and ~ Hight m))
+    plot(outMatrix[,1], outMatrix[,3], type="l", col="blue", xlab="Time (s)", ylab = expression(Flow ~ m^{3} / s ~ and ~ Hight ~ m))
     lines(outMatrix[,1], outMatrix[,4], col="orange", lty=2, lwd=1.5)
     lines(outMatrix[,1], outMatrix[,2])
     legend(1, 3, c(as.expression(bquote("Inflow - " ~ Q["in"])),
