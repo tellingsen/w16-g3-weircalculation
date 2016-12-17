@@ -5,7 +5,7 @@ args = commandArgs(trailingOnly=TRUE)
 
 plotFormat = "pdf" # output format for plots (either jpg or pdf)
 
-flowFile= "r100.csv"
+flowFile= "r1.csv"
 flowMatrix = read.csv(flowFile)
 
 
@@ -89,6 +89,12 @@ putInfo = function() {
 
 }
 
+aAtMidpoint = function() {
+  dataTable = genTable()
+  midDataTable = dataTable[c(900, 2700, 4500, 6300, 8100, 9900, 11700, 13500, 15300, 17100, 18900, 20700),]
+  write.csv(midDataTable, file="mid.csv")
+}
+
 printHelp = function() {
   cat('Welcome to the Rieseberga group 3 2016 weir calculation script! \n')
   cat('You now have a number of options which you access by running this script again with an argument after the script name \n \n')
@@ -96,6 +102,7 @@ printHelp = function() {
   cat('plot     - generate a pdf or jpg plots in the cwd, format specified as variable at begninning of this script \n')
   cat('notch    - calculate a notch width that prevents overflow for the given data \n')
   cat('info     - Print information about the constants used in the plot and notch options \n')
+  cat('mid      - Generate a csv file in the project/working directory with the calculated values at 30 min intervals starting at 15min \n')
   cat('help     - Show this screen \n \n')
   cat('Copyright 2016 - Tobias Ellingsen, Released under a CC0 lisence. For mor info see: \n')
   cat('https://creativecommons.org/share-your-work/public-domain/cc0/ \n')
@@ -111,6 +118,9 @@ if (length(args) == 1 ) {
   }
   else if (args == "info") {
     putInfo()
+  }
+  else if (args == "mid"){
+    aAtMidpoint()
   }
   else if (args == "help") {
     printHelp()
